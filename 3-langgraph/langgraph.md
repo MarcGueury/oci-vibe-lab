@@ -1,85 +1,114 @@
-# Test with APEX
+# Vibe Coding - LangGraph 
 
 ## Introduction
-In this lab, you will test the installation using APEX.
+In this lab, we will run the LangGraph application and modify it using Vibe Coding.
 
 Estimated time: 10 min
 
 ### Objectives
 
-- Test the program
+- Test the install program and modify it using Cline.
 
 ### Prerequisites
-- The lab 1 must have been completed.
+- The lab 2 must have been completed.
 
-## Task 1: Test
+## Task 1: Open the project in Visual Studio code
 
-2. Check the APEX URL and the user/password at the end of the build log.
+During the installation, a GIT repo was created on a Virtual machine. We will clone this repo on your laptop. Such that you can change it and commit the changes to the Git Server.
+ 
+1. Check that the URL given at the end of the installation with the chat is working. 
+    The URL looks like this: http://123.123.123.123/
+2. Check that you can login using SSH from your laptop to the bastion using the private key associated with your_public_ssh_key in terraform.tfvars
+    ```
+    <copy>
+    ssh opc@123.123.123.123
+    </copy>
+    ```
+3. Clone the git repo of the starter app in your laptop. On your laptop start a shell program in Visual Studio Code or in your favorite terminal. Then run 
+    ```
+    <copy>
+    git clone opc@123.123.123.123:~/app.git oci-vibe
+    cd oci-vibe
+    </copy>
+    ```
+4. Open the created folder **oci-vibe** with Visual Studio Code
+5. Make a small change. Go to ui/html/index.html.
+6. Change 
+    - OLD: How can I help ?
+    - NEW: Vibe Coding Lab
+    ![Small Change](images/small-change.png)  
+7. Open the Visual Studio Code terminal. 
+8. Run
+    ```
+    <copy>
+    ./git_push.sh   
+    </copy>
+    ```
+9. Check the result in your chat URL: http://123.123.123.123/
 
-3. Go to the URL of the application (e.g., https://abcdefghijklmnop.apigateway.eu-frankfurt-1.oci.customer-oci.com/ords/r/apex_app/apex_app/).
+## Task 2: Generate documentation of the program
 
-    Log in as APEX\_APP / YOUR\_PASSWORD.
+Let's ask to Cline to add some functions for us.
+1. Go to Cline.
+2. In the prompt type, 
+    ```
+    <copy>
+    Check all the code of the project and create 2 documentation files:
+    - README.md for end-users
+    - AGENTS.md for technical documentation for the technical people and coding agents
+    </copy>
+    ```
+3. Check the output
 
-4. Type "when was jazz created" and press Enter.
+    ![Documentation](images/readme_agents_md.png)  
 
-    Hover on the citation. Note that you can see the page number. Click on the link.
-    ![Test Jazz](../0-intro/images/when-was-jazz-created.png)
+## Task 3: Change the program using Vibe Coding
 
-5. Type "what is Oracle Analytics" and press Enter.
+Let's ask to Cline to add some functions for us.
+1. Go to Cline.
+2. In the prompt type, 
+    ```
+    <copy>
+    Modify mcp_server.py to add new table emp in oracle.sql and a new tool get_emp in the mcp_server.py.
+    </copy>
+    ```
+3. Check the output
 
-    ![Test Video](images/test-video.png)
+    ![Documentation](images/emp1.png)  
 
-1. Try more questions:
+4. When you are happy about the result, push it.
+    ```
+    <copy>
+    ./git_push.sh   
+    </copy>
+    ```
+5. Check the result in your chat URL: http://123.123.123.123/
+6. Ask: "get employees"
 
-    | File type | Extension | Question                                          |
-    | ----------| --------- | ------------------------------------------------- |
-    | PDF       | .pdf      | When was jazz created ?                           |
-    |           |           | What is Document Understanding                    |
-    | Word      | .docx     | What is OCI ?                                     |
-    | Image     | .png      | List the countries in the map of Brazil.          |
-    | Website   | .selenium | What is Digital Assistant ?                       |
-    | FAX       | .tif      | Is there an invoice for Optika ?                  | 
-    |           |           | What does the file invoice.tif contain?           |
-    | Video     | .mp4      | What is Oracle Analytics                          | 
-    | Audio     | .mp3      | What is the issue with my headphones ?            |
+    ![Documentation](images/emp2.png)  
 
 
-**You may now proceed to the [next lab.](#next)**
+## Task 4: XXX - Other test
 
-## Task 2. Filter
+You could try other things like:
 
-One additional step is needed to use the RAG filter. We need to add a RAG tool.
-
-### 1. Rag Tool ###
-
-- In the hamburger menu, go to **Analytics and AI / Generative AI Agents**
-- Click on **Agents**
-- Choose your compartment
-- Open the agent created in Lab 1
-- Choose Tools / Create Tool
-- Choose **RAG** 
-   ![Custom tool](../6-tools/images/rag-tool.png)
-- Enter:
-    - **Name** = rag-tool
-    - **Description** = Use this tool for any questions that are not covered by the other tools. It contains generic documentation.
-- Select the knowledge base - agext-agent-kb
-- Click **Create Tool**
-
-### 2. Test again ###
-- Go back to the APEX app. 
-- Refresh the browser to start a new session. 
-- Set the filter to */oracle*.
-- Ask again the same questions. You will see that based on the metadata, you can filter files. 
-
-## Known issues
-
-1. Conversation history 
-    Notice, do not change the filter in the middle of the conversation, or you can have funny effect. Ex:
-    - Ask "what is jazz ?" without filter -> you get the answer from the RAG (with a citation)
-    - Stay in the same conversation: 
-    - Ask "what is jazz ?" with filter "/music" -> you get the answer from the RAG (with a citation) 
-    - Ask "what is jazz ?" with filter "/oracle" -> you get an answer... from the conversation history... 
-    - The correct way is to reset the conversation to get another chat session.
+1. Go to Cline.
+2. In the prompt type, 
+    ```
+    <copy>
+    Modify mcp_server.py to add tools to create bookings in a restaurant. 
+    - The user will be logged by default. He will be named "Joe Doe". 
+    - And the program known the allergies of the user. 
+    - When booking, the proposes times when the tables are free. 
+    - The data about booking is stored in the database.
+    - There are 30 places in the restaurant. There are 2 services at 18:00 and 19:30. 
+    - You can book only today and tomorrow.
+    - When full, propose to call later.
+    - Add a tool with a menu. When showing the menu take care about the allergies.
+    </copy>
+    ```
+...
+3. Same than above. Git push and check the result.
 
 ## Acknowledgements
 

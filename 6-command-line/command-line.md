@@ -90,34 +90,12 @@ Back in the terminal.
     ```
     ![Migration](images/cline-cli1.png)  
 
-The result will looks like this:
+2. If you copy the generated markdown in your favorite markdown viewer, the result will looks like this:
 
----
+    ![Migration](images/cline-cli2.png)  
 
-### Executive Summary
 
-The app_to_migrate is a specialized Retrieval-Augmented Generation (RAG) system for HR policies and procedures. It uses Oracle DB for storing PDF policies (as BLOBs), advanced PDF parsing/OCR/chunking, Oracle Vector Store for semantic search, and OCI Cohere models for embeddings and chat completions. It is integrated with Oracle APEX frontend, supports user personalization (based on grade, service years, etc.), mathematical calculations in responses, source attribution with Object Storage links, and on-demand embedding creation. The backend consists of two Python Flask services.
-
-The app_target is a modern full-stack conversational AI agent application using LangGraph (ReAct agent), OCI Generative AI (primarily gpt-oss-120b or alternatives), a Model Context Protocol (MCP) server for dynamic tools, a rich web UI with streaming, voice input, multi-language support, Mermaid diagram generation, and Oracle DB integration for structured data (DEPT table). It emphasizes research tasks, avoids math calculations, supports authentication (IDCS/JWT or simulated), user context propagation to tools, and modern deployment (Nginx, Docker/K8s ready).
-
-**Overall Migration Feasibility**: Medium-High. Target's agent framework and UI can serve as a strong foundation; development needed for RAG pipeline, PDF processing, and HR prompt/logic.
-
-### Feature Comparison Table
-
-| Feature Name | Description | Present in app_to_migrate | Present in app_target | Gap Type |
-|--------------|-------------|---------------------------|-----------------------|----------|
-| Natural Language HR Querying | Ask questions about policies, leave, benefits, loans; grounded in documents | Yes | Partial (research-focused agent, no HR docs/RAG) | partial |
-| RAG Pipeline with Vector Search | Semantic retrieval from chunked HR PDFs using OracleVS or Qdrant | Yes | No | missing |
-| Document Ingestion & Embedding | Advanced PDF parsing (text, tables to MD, bold topics, OCR/Tesseract for images), chunking (1500/150), on-demand via API from DB BLOBs | Yes | No | missing |
-| User Personalization & Math Calculations | Inject userDetails (grade, years, kids); prompt for tailored responses incl. leave/loan calcs | Yes | No (prompt avoids math; user context for tools only) | missing |
-| Source Attribution with Links | Response includes HTML links to Object Storage PDFs with page numbers | Yes | Partial (tool results as tables; no doc sources) | partial |
-| Chat History Support | previous_chat_message/reply params for conversation continuity | Yes | Yes (threaded conversations in LangGraph) | equivalent |
-
----
-
-![Migration](images/cline-cli2.png)  
-
-Congratulation for finishing the lab. We hope that you learned something useful !! 
+Congratulations for finishing the all the labs. We hope that you learned something useful !! 
 
 ## Acknowledgements
 

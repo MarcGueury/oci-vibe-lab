@@ -1,11 +1,6 @@
 # Vector Store
 
 ## Introduction
-    - setup a API KEY
-    - setup Cline / Visual Studio Code
-    - Generate hello world. Run it.
-    - Setup a DAC with Qwen ? 
-
 In this lab, we will install your laptop to be ready for Vibe coding. Then, generate a small "Hello World". 
 
 Estimated time: 45 min
@@ -109,20 +104,7 @@ You can
     ![Create Compartment](images/compartment2.png)
 5. When the compartment is created copy the compartment ocid ##COMPARTMENT_OCID## and put it in your notes
 
-## Task 4: Install Visual Studio Code + Cline
-
-1. Download and install VS Code. See [https://code.visualstudio.com/download](Download Visual Studio Code)
-2. Install the Cline extension.
-    - Open VS Code, and click Extensions on the sidebar.
-    - Enter cline in the search field. When it appears, click Install, then click Trust Publisher and Install to proceed.
-    - The extension is installed and appears on the sidebar.
-
-    ![Cline](images/cline1.png)
-
-While you can choose any model of any provider to continue this lab, we will go through several model choices available in OCI.
-
-
-## Task 5: Create an API Key 
+## Task 3: Create an API Key 
 
 First, create an OpenAI compatible API Key
 1. Login to the OCI Console. Note the region name. You should be in a region with Generative AI. See the full list here: https://docs.oracle.com/en-us/iaas/Content/generative-ai/regions.htm
@@ -151,14 +133,24 @@ First, create an OpenAI compatible API Key
     - Click **Close**
 While you can choose any model of any provider to continue this lab, we will go through several model choice available in OCI.
 
-## Task 6: Configure your AI Model
+## Task 4: Install Visual Studio Code + Cline
+
+1. Download and install VS Code. See [Download Visual Studio Code](https://code.visualstudio.com/download)
+2. Install the Cline extension.
+    - Open VS Code, and click Extensions on the sidebar.
+    - Enter *cline* in the search field. When it appears, click *Install*, then click *Trust Publisher and Install* to proceed.
+    - The extension is installed and appears on the sidebar.
+
+    ![Cline](images/cline1.png)
+
+While you can choose any model of any provider to continue this lab, we will go through several model choices available in OCI.
+
+## Task 5: Configure your AI Model
 
 1. Back to Visual Studio Code
 2. Go to the Cline model configuration
     - Click on Cline (on the sidebar)
     - Click on the settings icon
-
-    ![API_KEY](images/cline1.png)
 
 3. Go to the Cline model configuration
     - API Privider: **OpenAI Compatible**
@@ -167,7 +159,7 @@ While you can choose any model of any provider to continue this lab, we will go 
         - Ex: https://inference.generativeai.us-chicago-1.oci.oraclecloud.com/20231130/actions/v1
     - OpenAI Compatible API Key
         - Choose a model: https://docs.oracle.com/en-us/iaas/Content/generative-ai/model-endpoint-regions.htm#top
-        - Ex: xai.grok-code-fast-1
+        - Ex: *xai.grok-code-fast-1*
     - Click **Done**
 
     ![API_KEY](images/cline2.png)
@@ -179,14 +171,14 @@ While you can choose any model of any provider to continue this lab, we will go 
 
     - Choose the OpenAI Compatible mode 
 
-## Task 7: Hello World
+## Task 6: Hello World
 
 Back in Cline. Then try the simple example possible.
 
 1. In your operating system, create a directory **vibe**
 2. In that vibe directory, create a directory **hello_world**
 3. In Visual Studio, open the **hello_world** directory. It is empty.
-4. Start cline, in the cline prompt type: **Write hello world in python**
+4. Start Cline. In the Cline prompt, type: **Write hello world in python**
 
     ![API_KEY](images/cline4.png)
 
@@ -198,7 +190,7 @@ Back in Cline. Then try the simple example possible.
     - Run in a terminal: **brew install python**
     - Restart the hello_world.py: python3 hello_world.py
 
-## Task 8: Install a Dedicated AI Cluster (Optional)
+## Task 7: (Optional) Install a Dedicated AI Cluster
 
 XXX QWEN XXX ??
 

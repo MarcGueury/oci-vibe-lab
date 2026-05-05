@@ -1,7 +1,7 @@
-# Test with LangGraph
+# Vibe Coding - Database
 
 ## Introduction
-In this lab, you will test the installation using LangGraph.
+In this lab, you will install the SQLcl MCP tool to help the agent to generate code about the database.
 
 Estimated time: 10 min
 
@@ -18,12 +18,12 @@ Estimated time: 10 min
 2. In the resulting dialogue, click Settings Settings icon.
 3. The MCP Servers page opens, with the Installed tab selected.
 4. Click Configure MCP Servers.
-5.  The cline_mcp_settings.json file opens in the VS Code editor.
+5.  The cline\_mcp\_settings.json file opens in the VS Code editor.
 6. In the settings file, add a JSON configuration snippet in the following format. Replace PATH/bin/sql with the absolute path of your SQLcl installation, and press Ctrl+S on your keyboard to save the file.
     ```
     {
         "mcpServers": {
-            "sqlcl": {
+            "SQLcl": {
                 "command": "PATH/bin/sql",
                 "args": ["-mcp"],
                 "disabled": false
@@ -34,6 +34,8 @@ Estimated time: 10 min
 7. You’ll now see the SQLcl MCP Server and its tools listed on the MCP Servers page.
     Click Done on the MCP Servers page.
 8. If necessary, restart VS Code for changes to take effect.
+
+See also: https://www.thatjeffsmith.com/archive/2025/07/getting-started-with-our-mcp-server-for-oracle-database/
 
 ## Task 2: Setup the connection
 
