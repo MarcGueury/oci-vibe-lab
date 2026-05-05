@@ -86,11 +86,12 @@ The name are in the form of **doc."date"\_"git commit id".log**
     ## Usage / Migration
     - **Setup**: Re-run the updated `db/oracle.sql` against your Oracle instance (or apply the new `CREATE TABLE` + `INSERT`s manually). Ensure the `DEPT` table exists first due to the foreign key.
     - **Usage** (MCP clients):
-    ```python
+    
+    python
     # Example call (via MCP client library)
     employees = await client.call_tool("get_emp", {})
     # Returns: list of dicts, e.g. [{"empno": 7369, "ename": "SMITH", ...}, ...]
-    ```
+    
     - No breaking migration for existing `get_dept()` users. New env var validation is strict (raises `ValueError` if any are missing).
 
     ## Risks / Notes
