@@ -1,7 +1,8 @@
-# DevOps after GIT commit
+# Vibe Coding - DevOps
 
 ## Introduction
-In this lab, we will run tools that will trigger when the code commits to the server.
+In this lab, we will run tools that will trigger when the code is pushed to the Git server.
+
 Estimated time: 10 min
 
 ### Objectives

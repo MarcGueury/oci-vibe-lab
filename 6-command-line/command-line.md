@@ -1,4 +1,4 @@
-# Customize (Adding new files...)
+# Command Line Mode - Workflow
 
 ## Introduction
 In this lab, we will use the Cline CLI directly. Several time one after each other for automating a complex task. 
