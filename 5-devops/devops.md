@@ -12,16 +12,16 @@ In this lab, we will use one trigger of Git to automate AI task when pushing new
 ### Prerequisites
 - The lab 1 to 3 must have been completed.
 
-## Introduction
+### Git Hooks
 
 This lab is based on Git Hooks: 
 - https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks
 
-When some actions are done on Git, **Hooks** will start commands.
+When some actions are done with the Git server, **Hooks** can start commands.
 
 In this lab, we show will 3 Git Hooks:
 - Rebuild
-- Documentation (using AI to generate doc for each commit)
+- Documentation using AI for each commit
 - Security to check the security best practice  of the commit from an AI point of view. 
 
 ## Task 1: Documentation and Security
@@ -51,8 +51,7 @@ The name are in the form of **doc."date"\_"git commit id".log**
     cat security.20260505-150604_46a7469.log
     ```
 
-2. Check the logs
-    You will see the rebuild log, the documentation generated for each commit and the security remarks that the AI had about the changes.
+2. In rebuild log, you will see the log of the redeployment (and rebuild).
         ![Rebuild](images/devops_rebuild.png)  
  
     The security.log looks like this:
@@ -112,7 +111,7 @@ The name are in the form of **doc."date"\_"git commit id".log**
 
 ## Task 2: Check how it works.
 
-If you look in $HOME/compute/git/post_receive_doc.sh, you will see this:
+If you look in $HOME/compute/git/post\_receive\_doc.sh, you will see this:
 
 ```
 cline -y  << EOF
@@ -150,7 +149,7 @@ Action to take: none -> urgent
 EOF
 ````
 
-For the security check, in $HOME/compute/git/post_receive_security.sh, you will see this:
+For the security check, in $HOME/compute/git/post\_receive\_security.sh, you will see this:
 
 ```
 cline -y  << EOF
@@ -193,12 +192,13 @@ EOF
 1. Too many consecutive mistakes (3). The model may not be capable enough for this task. Consider using a more capable model.
     - Cause:
         You get this error, this is very probably due to maximum number of token reached. 
+
         ```
         Error: [YOLO MODE] Task failed: Too many consecutive mistakes (3). The model may not be capable enough for this task. Consider using a more capable model.
         ```
-   - Solution:
+    - Solution:
         1. Wait 1 or 2 mins. If the number of token sent to the model decrease, it will work again.
-        2. Ask to your OCI Admin to increase the maximum number of token for the model that you are using in Governance / Limits / Generative AI.
+        2. Ask to your OCI Admin to increase the maximum number of tokens for the model that you are using in Governance / Limits / Generative AI.
         3. Use a Dedicated AI Cluster that has no limit of tokens.
 
 ## Acknowledgements

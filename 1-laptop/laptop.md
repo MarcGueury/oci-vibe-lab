@@ -107,7 +107,7 @@ You can
 ## Task 3: Create an API Key 
 
 First, create an OpenAI compatible API Key
-1. Login to the OCI Console. Note the region name. You should be in a region with Generative AI. See the full list here: https://docs.oracle.com/en-us/iaas/Content/generative-ai/regions.htm
+1. Login to the OCI Console. Put the region name in your notes. ##REGION##. You should be in a region with Generative AI. See the full list here: https://docs.oracle.com/en-us/iaas/Content/generative-ai/regions.htm
 2. Click the hamburger menu / AI & Analytics / Generative AI
 
     ![API_KEY](images/api_key1.png)
@@ -127,7 +127,7 @@ First, create an OpenAI compatible API Key
 
     ![API_KEY](images/api_key3.png)
 
-6. Copy the value of the 2 keys in your notes.
+6. Copy the value of the 2 keys in your notes. (##api-key1##, ##api-key2##)
     - api-key1: sk-xxxxxxxxx
     - api-key2: sk-xxxxxxxxx
     - Click **Close**
@@ -153,13 +153,13 @@ While you can choose any model of any provider to continue this lab, we will go 
     - Click on the settings icon
 
 3. Go to the Cline model configuration
-    - API Privider: **OpenAI Compatible**
+    - API Provider: **OpenAI Compatible**
     - Base URL: ex: 
         - Choose your region: https://docs.oracle.com/en-us/iaas/api/#/en/generative-ai-inference/20231130/
         - Ex: https://inference.generativeai.us-chicago-1.oci.oraclecloud.com/20231130/actions/v1
     - OpenAI Compatible API Key
         - Choose a model: https://docs.oracle.com/en-us/iaas/Content/generative-ai/model-endpoint-regions.htm#top
-        - Ex: *xai.grok-code-fast-1*
+        - Ex: *xai.grok-4.20-0309-non-reasoning*
     - Click **Done**
 
     ![API_KEY](images/cline2.png)
@@ -173,7 +173,7 @@ While you can choose any model of any provider to continue this lab, we will go 
 
 ## Task 6: Hello World
 
-Back in Cline. Then try the simple example possible.
+Back in Cline. Try the simple example possible.
 
 1. In your operating system, create a directory **vibe**
 2. In that vibe directory, create a directory **hello_world**
@@ -188,11 +188,28 @@ Back in Cline. Then try the simple example possible.
     By example on MacOS: 
     - Install Brew: https://brew.sh/
     - Run in a terminal: **brew install python**
-    - Restart the hello_world.py: python3 hello_world.py
+    - Restart the hello\_world.py: python3 hello\_world.py
 
-## Task 7: (Optional) Install a Dedicated AI Cluster
+## Task 7: (Optional) Install a Dedicated AI Cluster (DAC)
 
-XXX QWEN XXX ??
+Warning. This optional task will start a GPU for minimum 1 hour. So, the cost will be some euros by hour. If you follow this procedure, be sure to agree with your OCI Cloud Administrator first. And if for a test, please, stop the DAC after using it.
+
+We will follow this process: https://docs.oracle.com/en-us/iaas/Content/generative-ai/imported-models.htm
+
+Using a DAC has a lot of advantages.
+- You choose the model you want to run. It runs for you on your GPU. 
+- You pay per hour. When stopped, the cost stops.
+- There is no maximum number tokens per minute. 
+- There is no cost per token. For high token works, that need to run during a limited period, it is an interesting solution.
+- No share of the GPUs with other users.
+- ...
+
+Let's install Qwen or Nemotron.
+
+Documentation: https://docs.oracle.com/en-us/iaas/Content/generative-ai/import-model-from-hugging-face.htm#top
+
+XXXXX
+
 
 ## Models
 

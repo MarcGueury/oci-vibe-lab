@@ -36,13 +36,18 @@ Estimated time: 15 min
     git clone https://github.com/mgueury/oci-vibe.git
     </copy>
     ````
-7. Check if you have an authorization token (associated with your profile).
+7.  If you have already a ssh key setup in your laptop. It is easier to add your public ssh key to the settings of the scripts. It will allow your laptop to login on the VM that terraform will create very easily.
 
-   For more info, see here: https://docs.oracle.com/en-us/iaas/Content/Registry/Tasks/registrygettingauthtoken.htm
+    In terraform.tfvars:
+    ```
+    <copy>    
+    your_public_ssh_key="ssh-rsa ABBCDEFGHIJL....."
+    </copy>
+    ```
 
-   If yes, note it in your notepad. If not, the script below will create it.
+    If not, you can also comment this line, terraform will create a SSH key (in target/ssh\_key\_starter) that you will later configure on your laptop. 
 
-7. Run each of the three commands below in the Terminal, one at a time. It will run Terraform to create the rest of the components.
+8. Run each of the three commands below in the Terminal, one at a time. It will run Terraform to create the rest of the components.
     ```
     <copy>
     cd oci-vibe/starter/
@@ -59,9 +64,8 @@ Estimated time: 15 min
 
     In case of errors, check **Known Issues** below
 
-8. **Please proceed to the [next lab](#next) while Terraform is running.** 
-    Do not wait for the Terraform script to finish because it takes about 45 minutes and you can check the steps in the next labs while it's running. However, you will need to come back to this lab when it is done and complete the next step.
-9. When Terraform finishes, you will see settings that you need in the next lab. Save these to your text file. It will look something like:
+9. **Please proceed to the [next lab](#next) while Terraform is running.** 
+10. When Terraform finishes, you will see settings that you need in the next lab. Save these to your text file. It will look something like:
 
     ```
     <copy>    
@@ -73,7 +77,7 @@ Estimated time: 15 min
     -----------------------------------------------------------------------
     Vibe Coding (Build done in Bastion):
 
-    1. Check that you can login from your laptop to the bastion using the private key associated with your_public_ssh_key in terraform.tfvars
+    1. Check that you can login from your laptop to the bastion using the private key associated with your\_public\_ssh\_key in terraform.tfvars
     > ssh opc@123.123.123.123
     2. Clone the git repo of the starter app in your laptop
     > git clone opc@123.123.123.123:~/app.git app
@@ -91,6 +95,40 @@ Estimated time: 15 min
     </copy>    
     ```
 **You may now proceed to the [next lab](#next)**
+
+## Task 2: Setup SSH connection 
+
+You will need to setup ssh connection to the created VM. There are a lot of way for this.
+The goal is that this command work from your laptop (with the IP from the output above)
+```
+<copy>    
+ssh opc@123.123.123.123
+</copy>    
+```
+
+1. (Easier) If you have added "your\_public\_ssh\_key" in paragraph above. It should work already.
+2. If not, do this:
+
+    In the cloud shell, where terraform ran.
+    ```
+    <copy>    
+    cat target/ssh_key_starter
+    </copy>    
+    ````
+
+    In your laptop, 
+    - go to $HOME/.ssh
+    - create file: *ssh\_key\_vibe*
+    - Copy/paste the content of the target/ssh\_key\_starter above. Save
+    - edit the file .ssh/config
+    - add something like
+    ```
+    Host 123.123.123.123
+        IdentityFile ssh_key_vibe
+        HostName 123.123.123.123
+        User opc
+    ```
+   - retry to ssh to the Virtual Machine   
 
 ## Known issues
 

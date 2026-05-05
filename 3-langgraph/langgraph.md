@@ -18,37 +18,32 @@ During the installation, a GIT repo was created on a Virtual machine. We will cl
  
 1. Check that the URL given at the end of the installation with the chat is working. 
     The URL looks like this: http://123.123.123.123/
-2. Check that you can login using SSH from your laptop to the bastion using the private key associated with your_public_ssh_key in terraform.tfvars
-    ```
-    <copy>
-    ssh opc@123.123.123.123
-    </copy>
-    ```
-3. Clone the git repo of the starter app in your laptop. On your laptop start a shell program in Visual Studio Code or in your favorite terminal. Then run 
+2. Clone the git repo of the starter app in your laptop. On your laptop start a shell program in Visual Studio Code or in your favorite terminal. Then run 
     ```
     <copy>
     git clone opc@123.123.123.123:~/app.git oci-vibe
     cd oci-vibe
     </copy>
     ```
-4. Open the created folder **oci-vibe** with Visual Studio Code
-5. Make a small change. Go to ui/html/index.html.
-6. Change 
+3. Open the created folder **oci-vibe** with Visual Studio Code
+4. Make a small change. Go to ui/html/index.html.
+5. Change 
     - OLD: How can I help ?
     - NEW: Vibe Coding Lab
-    ![Small Change](images/small-change.png)  
-7. Open the Visual Studio Code terminal. 
-8. Run
+    ![Small Change](images/small-change1.png)  
+6. Open the Visual Studio Code terminal. 
+7. Run
     ```
     <copy>
     ./git_push.sh   
     </copy>
     ```
-9. Check the result in your chat URL: http://123.123.123.123/
+8. Check the result in your chat URL: http://123.123.123.123/
+    ![Small Change](images/small-change2.png)  
 
 ## Task 2: Generate documentation of the program
 
-Let's ask to Cline to add some functions for us.
+Let's ask to Cline to do things for us.
 1. Go to Cline.
 2. In the prompt type, 
     ```
@@ -64,12 +59,12 @@ Let's ask to Cline to add some functions for us.
 
 ## Task 3: Change the program using Vibe Coding
 
-Let's ask to Cline to add some functions for us.
+Let's ask to Cline to add code (table + python).
 1. Go to Cline.
 2. In the prompt type, 
     ```
     <copy>
-    Modify mcp_server.py to add new table emp in oracle.sql and a new tool get_emp in the mcp_server.py.
+    Add new table emp in oracle.sql and a new tool get_emp in the mcp_server.py.
     </copy>
     ```
 3. Check the output

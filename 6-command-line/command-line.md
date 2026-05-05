@@ -1,13 +1,13 @@
 # Command Line Mode - Workflow
 
 ## Introduction
-In this lab, we will use the Cline CLI directly. Several time one after each other for automating a complex task. 
+In this lab, we will use the Cline CLI directly. In a script , you can call several time Cline in a workflow to automate a complex task. 
 
 Estimated time: 10 min
 
 ### Objectives
 
-- Create a migration plan from app_to_migrate to **app_target** flow using several Coding Agent calls,  
+- Create a migration plan from *app\_to\_migrate* to *app\_target* using several Coding Agent calls,  
 
 ### Prerequisites
 - The lab 1 and 2 must have been completed.
@@ -19,20 +19,20 @@ Estimated time: 10 min
 Login to the compute created in lab 2.
 - go to the installation directory
 
-```
-<copy>
-cd oci-vibe
-./starter.sh ssh compute
-</copy>
+    ```
+    <copy>
+    cd oci-vibe
+    ./starter.sh ssh compute
+    </copy>
 ```
 
-Or ssh to the machine directly if you have setup it so in lab 3.
+- Or ssh to the machine directly if you have setup it so in lab 3.
 
-```
-<copy>
-ssh opc@YOUR_COMPUTE_IP
-</copy>
-```
+    ```
+    <copy>
+    ssh opc@YOUR_COMPUTE_IP
+    </copy>
+    ```
 
 ## Task 2: Check the migration scripts.
 
