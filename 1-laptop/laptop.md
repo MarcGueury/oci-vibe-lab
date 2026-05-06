@@ -99,7 +99,7 @@ You can
 3. Go to the 3-bar/hamburger menu of the console, then Identity & Security > Compartments.
     ![Menu Compartment](images/compartment1.png)
 4. Click ***Create Compartment***
-    - Give a name: ex: ***genai-agent***
+    - Give a name: ex: ***VIBE-AI***
     - Then again: ***Create Compartment***
     ![Create Compartment](images/compartment2.png)
 5. When the compartment is created copy the compartment ocid ##COMPARTMENT_OCID## and put it in your notes
@@ -133,7 +133,22 @@ First, create an OpenAI compatible API Key
     - Click **Close**
 While you can choose any model of any provider to continue this lab, we will go through several model choice available in OCI.
 
-## Task 4: Install Visual Studio Code + Cline
+## Task 4: Create a Policy
+
+- Go to the OCI Console menu, and choose *Identity & Security* / *Policies*
+    ![Policy Menu](images/policy-menu.png)
+- Click *Create Policy*
+- Name: *policy-vibe*
+- Description: *policy-vibe*
+- Click *Show Manual editor*
+- Copy this with your value of ##COMPARTMENT\_OCID##
+    ```
+    allow any-user to manage generative-ai-response in compartment id ##COMPARTMENT\_OCID## where request.principal.type = 'generativeaiapikey'
+    ```
+- Click *Create*
+    ![Policy Create](images/policy-create.png)
+
+## Task 5: Install Visual Studio Code + Cline
 
 1. Download and install VS Code. See [Download Visual Studio Code](https://code.visualstudio.com/download)
 2. Install the Cline extension.
@@ -145,7 +160,7 @@ While you can choose any model of any provider to continue this lab, we will go 
 
 While you can choose any model of any provider to continue this lab, we will go through several model choices available in OCI.
 
-## Task 5: Configure your AI Model
+## Task 6: Configure your AI Model
 
 1. Back to Visual Studio Code
 2. Go to the Cline model configuration
@@ -171,7 +186,7 @@ While you can choose any model of any provider to continue this lab, we will go 
 
     - Choose the OpenAI Compatible mode 
 
-## Task 6: Hello World
+## Task 7: Hello World
 
 Back in Cline. Try the simple example possible.
 
@@ -190,7 +205,7 @@ Back in Cline. Try the simple example possible.
     - Run in a terminal: **brew install python**
     - Restart the hello\_world.py: python3 hello\_world.py
 
-## Task 7: (Optional) Install a Dedicated AI Cluster (DAC)
+## Task 8: (Optional) Install a Dedicated AI Cluster (DAC)
 
 Warning. This optional task will start a GPU for minimum 1 hour. So, the cost will be some euros by hour. If you follow this procedure, be sure to agree with your OCI Cloud Administrator first. And if for a test, please, stop the DAC after using it.
 
@@ -204,12 +219,11 @@ Using a DAC has a lot of advantages.
 - No share of the GPUs with other users.
 - ...
 
-Let's install Qwen or Nemotron.
+Let's install Qwen or Nemotron (tested Nemotron - OK).
 
 Documentation: https://docs.oracle.com/en-us/iaas/Content/generative-ai/import-model-from-hugging-face.htm#top
 
 XXXXX
-
 
 ## Models
 
