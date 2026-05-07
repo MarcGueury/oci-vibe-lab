@@ -252,6 +252,47 @@ Documentation: https://docs.oracle.com/en-us/iaas/Content/generative-ai/import-m
     - DAC: **dac-gemma-3-4b-it**
 12. Wait until Endpoint is Active.
 
+## Task 9: (Optional) Configure Cline for a DAC-hosted model
+
+Use the active DAC endpoint you created in Task 8. Keep note of these values:
+
+- Region
+- DAC endpoint OCID
+- Compartment
+
+For DAC-hosted models, the Cline Model ID is the DAC endpoint OCID:
+
+```
+ocid1.generativeaiendpoint.<region>..<unique_id>
+```
+
+For DAC-hosted models, configure the full Chat Completions URL with **/chat/completions**:
+
+```
+https://inference.generativeai.<region>.oci.oraclecloud.com/openai/v1/chat/completions
+```
+
+Example for UK South London:
+
+```
+https://inference.generativeai.uk-london-1.oci.oraclecloud.com/openai/v1/chat/completions
+```
+
+Use the OCI Generative AI API key you created earlier in this lab.
+
+⚠️ Store the key securely. Do not commit it to GitHub or place it in source code.
+
+Configure Cline:
+
+1. Open VS Code or PyCharm.
+2. Open the Cline panel.
+3. Click the Settings icon.
+4. Under API Provider, select **OpenAI Compatible**.
+5. Set Base URL to the full Chat Completions URL.
+6. Paste your OCI Generative AI API key into the API Key field.
+7. Set Model ID to your DAC endpoint OCID.
+8. Save the configuration.
+
 
 ## Acknowledgements
 
