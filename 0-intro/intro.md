@@ -16,10 +16,10 @@ Each lab builds on the previous one, guiding you from initial setup to productio
 
 ### What You Will Learn
 
-The lab will help to create code 
+In these labs, you will learn how to:
 - Set up and configure Vibe Coding environment on your laptop  
 - Generate and execute code using natural language prompts  
-- Deploy and extend AI orchestration frameworks (LangGraph + MCP)  
+- Deploy and extend AI orchestration frameworks using LangGraph and MCP  
 - Automate documentation and code generation  
 - Discover tables and generate SQL, PL/SQL with databases  
 - Design migration strategies between projects  
@@ -28,13 +28,13 @@ The lab will help to create code
 
 ### Lab 1: Vibe Coding Fundamentals
 
-You will start by setting up your development environment. This includes configuring API keys, installing and integrating Cline with Visual Studio Code, and generating your first “Hello World” application. You will also explore setting up a DAC (Dedicate AI Cluster) using models such as Qwen.
+You will start by setting up your development environment. This includes configuring API keys, installing and integrating Cline with Visual Studio Code, and generating your first “Hello World” application. You will also explore setting up a DAC (Dedicated AI Cluster) using Imported Models such as Qwen.
 
 ![Hello World](images/lab-hello-world.png)
 
 ### Lab 2: Installation of a server
 
-You will then install a Virtual Machine where we will run and develop an application using LangGraph, MCP and a database
+You will then install a Virtual Machine where we will run and develop an application using LangGraph, MCP and a database.
 
 ![Install](images/lab-install.png)
 
@@ -62,12 +62,12 @@ In this final lab, you will design and automate project migration workflows. Usi
 
 ## About This Workshop
 
-You will have built a complete AI development pipeline—from first prompt to production monitoring—while learning how to integrate tools, enforce security, and automate complex engineering tasks with confidence.
+You will have built a complete AI development pipeline, from first prompt to production monitoring, while learning how to integrate tools, enforce security, and automate complex engineering tasks with confidence.
 
 **Please proceed to the [next lab](#next).**
 
 ## Acknowledgements
 
 - **Author**
-    - Marc Gueury, Generative AI Specialist
-    - Ilayda Temir, Generative AI Specialist
+    - Marc Gueury, AI Agents Black Belt
+    - Ilayda Temir, Generative AI Black Belt
