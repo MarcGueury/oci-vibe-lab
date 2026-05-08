@@ -33,7 +33,7 @@ Estimated time: 15 min
     ![Menu Compute](images/terraform1.png=50%x*)
     ````
     <copy>
-    git clone https://github.com/mgueury/oci-vibe.git
+    git clone https://github.com/mgueury/oci-vibe-terraform.git
     </copy>
     ````
 7.  If you have already a ssh key setup in your laptop. It is easier to add your public ssh key to the settings of the scripts. It will allow your laptop to login on the VM that terraform will create very easily.
