@@ -7,36 +7,31 @@ Estimated time: 15 min
 
 ### Objectives
 
-- Provision all the cloud components
-
-### Prerequisites
-
-- Lab1 is completed.
-- We will provision this installation:
+- After Lab 1 is complete, provision all the cloud components shown in this architecture:
 
     ![Architecture](../0-intro/images/lab-install.png)
 
 ## Task 1: Run a Terraform script to create the components
 
-1. Go to the OCI console homepage
+1. Go to the OCI console homepage.
 2. Click the *Developer Tools* icon in the upper right of the page and select *Code Editor*. Wait for it to load.
 3. Check that the Network used is Public. (see requirements)
 4. Check that the Code Editor architecture is x86_64.
-    - Go to Actions / Architecture
+    - Go to Actions / Architecture.
     - Check that the current architecture is x86_64.
     - If not, change it to x86_64 and confirm. It will restart.
 
         ![Architecture](images/cloud-shell-architecture.png)
 
-5. In the code editor menu, click *Terminal* then *New Terminal*
-6. Run the command below in the terminal
+5. In the code editor menu, click *Terminal* then *New Terminal*.
+6. Run the command below in the terminal.
     ![Menu Compute](images/terraform1.png=50%x*)
     ````
     <copy>
     git clone https://github.com/mgueury/oci-vibe.git
     </copy>
     ````
-7.  If you have already a ssh key setup in your laptop. It is easier to add your public ssh key to the settings of the scripts. It will allow your laptop to login on the VM that terraform will create very easily.
+7. If you already have an SSH key set up on your laptop, add your public SSH key to the script settings. This allows your laptop to log in to the VM that Terraform creates.
 
     In terraform.tfvars:
     ```
@@ -45,9 +40,9 @@ Estimated time: 15 min
     </copy>
     ```
 
-    If not, you can also comment this line, terraform will create a SSH key (in target/ssh\_key\_starter) that you will later configure on your laptop. 
+    If not, you can also comment this line. Terraform will create an SSH key (in target/ssh\_key\_starter) that you will later configure on your laptop. 
 
-8. Run each of the three commands below in the Terminal, one at a time. It will run Terraform to create the rest of the components.
+8. Run each of the two commands below in the Terminal, one at a time. This will run Terraform to create the rest of the components.
     ```
     <copy>
     cd oci-vibe/starter/
@@ -96,10 +91,10 @@ Estimated time: 15 min
     ```
 **You may now proceed to the [next lab](#next)**
 
-## Task 2: Setup SSH connection 
+## Task 2: Set up an SSH connection 
 
-You will need to setup ssh connection to the created VM. There are a lot of way for this.
-The goal is that this command work from your laptop (with the IP from the output above)
+You need to set up an SSH connection to the created VM. There are several ways to do this.
+The goal is that this command works from your laptop (with the IP from the output above):
 ```
 <copy>    
 ssh opc@123.123.123.123
@@ -142,7 +137,7 @@ ssh opc@123.123.123.123
     </copy>
     ```
 
-    Solution:  edit the file *starter/src/terraform/variable.tf* and replace the *availability domain* with one where there is still capacity
+    Solution: edit the file *starter/src/terraform/variable.tf* and replace the *availability domain* with one that has capacity.
     ```
     <copy>    
     OLD: variable availability_domain_number { default = 1 }
@@ -150,7 +145,7 @@ ssh opc@123.123.123.123
     </copy>    
     ```
 
-    Then rerun the following command in the code editor
+    Then rerun the following command in the code editor.
 
     ```
     <copy>
@@ -158,7 +153,7 @@ ssh opc@123.123.123.123
     </copy>
     ```
 
-    If it still does not work, to find an availability domain or shape where there are still capacity, try to create a compute manually with the OCI console.
+    If it still does not work, try to create a compute instance manually with the OCI console to find an availability domain or shape with available capacity.
 
 2. During the terraform run, there might be an error resulting from the compute shapes supported by your tenancy:
 
@@ -168,7 +163,7 @@ ssh opc@123.123.123.123
     </copy>    
     ```
 
-    Solution:  edit the file *starter/src/terraform/variable.tf* and replace the *instance_shape* to one where there are still capacity in your tenancy/region
+    Solution: edit the file *starter/src/terraform/variable.tf* and replace the *instance_shape* with one that has capacity in your tenancy/region.
     ```
     <copy>    
     OLD: variable instance_shape { default = "VM.Standard.x86.Generic" }
@@ -176,7 +171,7 @@ ssh opc@123.123.123.123
     </copy>    
     ```
 
-    Then rerun the following command in the code editor
+    Then rerun the following command in the code editor.
 
     ```
     <copy>
@@ -184,7 +179,7 @@ ssh opc@123.123.123.123
     </copy>
     ```
 
-    If it still does not work, to find an availability domain or shape where there are still capacity, try to create a compute manually with the OCI console.    
+    If it still does not work, try to create a compute instance manually with the OCI console to find an availability domain or shape with available capacity.    
 
 3. It happened on new tenancy that the terraform script failed with this error:
 
@@ -218,6 +213,5 @@ ssh opc@123.123.123.123
 ## Acknowledgements
 
 - **Author**
-    - Marc Gueury, Generative AI Specialist
-    - Ilayda Temir, Generative AI Specialist
-
+    - Marc Gueury, AI Agents Black Belt
+    - Ilayda Temir, Generative AI Black Belt

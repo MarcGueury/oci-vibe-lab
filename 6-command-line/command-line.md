@@ -1,32 +1,32 @@
 # Command Line Mode - Workflow
 
 ## Introduction
-In this lab, we will use the Cline CLI directly. In a script , you can call several time Cline in a workflow to automate a complex task. 
+In this lab, we will use the Cline CLI directly. In a script, you can call Cline several times in a workflow to automate a complex task.
 
 Estimated time: 10 min
 
 ### Objectives
 
-- Create a migration plan from *app\_to\_migrate* to *app\_target* using several Coding Agent calls,  
+- Create a migration plan from *app\_to\_migrate* to *app\_target* using several coding agent calls.
 
 ### Prerequisites
-- The lab 1 and 2 must have been completed.
+- Labs 1 and 2 are complete.
 
     ![Architecture](../0-intro/images/lab-migration.png)
 
-## Task 1: Login to the compute
+## Task 1: Log in to the compute
 
-Login to the compute created in lab 2.
-- go to the installation directory
+Log in to the compute created in Lab 2.
+- Go to the installation directory.
 
     ```
     <copy>
     cd oci-vibe
     ./starter.sh ssh compute
     </copy>
-```
+    ```
 
-- Or ssh to the machine directly if you have setup it so in lab 3.
+- Or SSH to the machine directly if you set it up in Lab 3.
 
     ```
     <copy>
@@ -34,9 +34,9 @@ Login to the compute created in lab 2.
     </copy>
     ```
 
-## Task 2: Check the migration scripts.
+## Task 2: Check the migration scripts
 
-The migration script is using several Cline CLI command in a chain. Look at the migration script 
+The migration script uses several Cline CLI commands in a chain. Look at the migration script:
 
 ```
 <copy>
@@ -90,15 +90,15 @@ Back in the terminal.
     ```
     ![Migration](images/cline-cli1.png)  
 
-2. If you copy the generated markdown in your favorite markdown viewer, the result will looks like this:
+2. If you copy the generated Markdown in your favorite Markdown viewer, the result will look like this:
 
     ![Migration](images/cline-cli2.png)  
 
 
-Congratulations for finishing the all the labs. We hope that you learned something useful !! 
+Congratulations on finishing all the labs. We hope you learned something useful!
 
 ## Acknowledgements
 
 - **Author**
-    - Marc Gueury, Generative AI Specialist
-    - Ilayda Temir, Generative AI Specialist
+    - Marc Gueury, AI Agents Black Belt
+    - Ilayda Temir, Generative AI Black Belt

@@ -10,29 +10,29 @@ Estimated time: 10 min
 - Test the install program and modify it using Cline.
 
 ### Prerequisites
-- The lab 2 must have been completed.
+- Lab 2 is complete.
 
-## Task 1: Open the project in Visual Studio code
+## Task 1: Open the project in Visual Studio Code
 
-During the installation, a GIT repo was created on a Virtual machine. We will clone this repo on your laptop. Such that you can change it and commit the changes to the Git Server.
+During the installation, a Git repository was created on a virtual machine. We will clone this repository on your laptop so you can change it and commit the changes to the Git server.
  
-1. Check that the URL given at the end of the installation with the chat is working. 
+1. Check that the URL given at the end of the installation with the chat is working.
     The URL looks like this: http://123.123.123.123/
-2. Clone the git repo of the starter app in your laptop. On your laptop start a shell program in Visual Studio Code or in your favorite terminal. Then run 
+2. Clone the Git repository of the starter app on your laptop. Start a shell in Visual Studio Code or in your favorite terminal, then run:
     ```
     <copy>
     git clone opc@123.123.123.123:~/app.git oci-vibe
     cd oci-vibe
     </copy>
     ```
-3. Open the created folder **oci-vibe** with Visual Studio Code
+3. Open the created folder **oci-vibe** with Visual Studio Code.
 4. Make a small change. Go to ui/html/index.html.
-5. Change 
-    - OLD: How can I help ?
+5. Change:
+    - OLD: How can I help?
     - NEW: Vibe Coding Lab
     ![Small Change](images/small-change1.png)  
 6. Open the Visual Studio Code terminal. 
-7. Run
+7. Run:
     ```
     <copy>
     ./git_push.sh   
@@ -43,28 +43,28 @@ During the installation, a GIT repo was created on a Virtual machine. We will cl
 
 ## Task 2: Generate documentation of the program
 
-Let's ask to Cline to do things for us.
+Let's ask Cline to do things for us.
 1. Go to Cline.
-2. In the prompt type, 
+2. In the prompt, type:
     ```
     <copy>
-    Check all the code of the project and create 2 documentation files:
+    Check all the code of the project and create two documentation files:
     - README.md for end-users
-    - AGENTS.md for technical documentation for the technical people and coding agents
+    - AGENTS.md for technical documentation for developers and coding agents
     </copy>
     ```
-3. Check the output
+3. Check the output.
 
     ![Documentation](images/readme_agents_md.png)  
 
 ## Task 3: Change the program using Vibe Coding
 
-Let's ask to Cline to add code (table + python).
+Let's ask Cline to add code for a table using Python.
 1. Go to Cline.
-2. In the prompt type, 
+2. In the prompt, type:
     ```
     <copy>
-    Add new table emp in oracle.sql and a new tool get_emp in the mcp_server.py.
+    Add a new EMP table in oracle.sql and a new get_emp tool in mcp_server.py.
     </copy>
     ```
 3. Check the output
@@ -88,18 +88,18 @@ Let's ask to Cline to add code (table + python).
 You could try other things like:
 
 1. Go to Cline.
-2. In the prompt type, 
+2. In the prompt, type:
     ```
     <copy>
     Modify mcp_server.py to add tools to create bookings in a restaurant. 
     - The user will be logged by default. He will be named "Joe Doe". 
-    - And the program known the allergies of the user. 
-    - When booking, the proposes times when the tables are free. 
+    - The program knows the user's allergies. 
+    - When booking, propose available times when tables are free. 
     - The data about booking is stored in the database.
     - There are 30 places in the restaurant. There are 2 services at 18:00 and 19:30. 
     - You can book only today and tomorrow.
-    - When full, propose to call later.
-    - Add a tool with a menu. When showing the menu take care about the allergies.
+    - If the restaurant is full, propose calling later.
+    - Add a tool with a menu. When showing the menu, take care of the allergies.
     </copy>
     ```
 ...
@@ -108,6 +108,5 @@ You could try other things like:
 ## Acknowledgements
 
 - **Author**
-    - Marc Gueury, Generative AI Specialist
-    - Ilayda Temir, Generative AI Specialist
-
+    - Marc Gueury, AI Agents Black Belt
+    - Ilayda Temir, Generative AI Black Belt
