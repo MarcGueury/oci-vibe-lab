@@ -1,18 +1,18 @@
-# Vector Store
+# Setup and Hello World
 
 ## Introduction
-In this lab, we will install your laptop to be ready for Vibe coding. Then, generate a small "Hello World". 
+In this lab, you will set up your laptop for Vibe Coding and generate a small Hello World application.
 
 Estimated time: 45 min
 
 ### Objectives
 
-- Provision the cloud components and Test
+- Configure OCI Generative AI access, Visual Studio Code, and Cline, then generate a Hello World app.
 
 ### Prerequisites
 
 - An OCI Account with sufficient credits where you will perform the lab. (Some of the services used in this lab are not part of the *Always Free* program.)
-- Check that your tenancy has access to one of the Generative AI regions. Like **Frankfurt, London or Chicago Region**. See the full list here: https://docs.oracle.com/en-us/iaas/Content/generative-ai/regions.htm
+- Check that your tenancy has access to a Generative AI region, such as **Frankfurt, London, or Chicago**. See the full list here: https://docs.oracle.com/en-us/iaas/Content/generative-ai/regions.htm
     - For Paid Tenancy
         - Click on region on top of the screen
         - Check that the Frankfurt or London or Chicago Region is there
@@ -22,7 +22,7 @@ Estimated time: 45 min
 
     ![Chicago Region](images/chicago-region.png)
 
-    - For Free Trial, the HOME region should be in one of the region where Generative AI On Demand is available.
+    - For Free Trial, the home region should be one where Generative AI On Demand is available.
 - The lab is using Cloud Shell with Public Network.
 
     The lab assumes that you have access to OCI Cloud Shell with Public Network access.
@@ -120,31 +120,31 @@ You can
 
 ## Task 3: Create an API Key 
 
-First, create an OpenAI compatible API Key
+First, create an OpenAI-compatible API key.
 1. Login to the OCI Console. Put the region name in your notes. ##REGION##. You should be in a region with Generative AI. See the full list here: https://docs.oracle.com/en-us/iaas/Content/generative-ai/regions.htm
-2. Click the hamburger menu / AI & Analytics / Generative AI
+2. Click the hamburger menu / AI & Analytics / Generative AI.
 
     ![API_KEY](images/api_key1.png)
 
-3. Go to the API Key on the right side
-4. Click **Create API key**
+3. Go to the API Key on the right side.
+4. Click **Create API key**.
 
     ![API_KEY](images/api_key2.png)
 
 5. Fill:
-    - name: **api-key**
-    - key one name: **api-key1**
-    - key one expiration date: **7/20/2030** Date far in the future
-    - key one name: **api-key2**
-    - key one expiration date: **7/20/2030** Date far in the future
-    - Click *Create*
+    - Name: **api-key**
+    - Key one name: **api-key1**
+    - Key one expiration date: **7/20/2030** (date far in the future)
+    - Key two name: **api-key2**
+    - Key two expiration date: **7/20/2030** (date far in the future)
+    - Click *Create*.
 
     ![API_KEY](images/api_key3.png)
 
-6. Copy the value of the 2 keys in your notes. (##api-key1##, ##api-key2##)
+6. Copy the values of the two keys in your notes (##api-key1##, ##api-key2##).
     - api-key1: sk-xxxxxxxxx
     - api-key2: sk-xxxxxxxxx
-    - Click **Close**
+    - Click **Close**.
 While you can choose any model of any provider to continue this lab, we will go through several model choice available in OCI.
 
 ## Task 4: Create a Policy
@@ -193,8 +193,8 @@ While you can choose any model of any provider to continue this lab, we will go 
 
     ![API_KEY](images/cline2.png)
 
-4. Try to see if it answer.
-    - Who are you ?
+4. Test whether Cline answers.
+    - Who are you?
     
     ![API_KEY](images/cline3.png)
 
@@ -221,35 +221,95 @@ Back in Cline. Try the simple example possible.
 
 ## Task 8: (Optional) Install a Dedicated AI Cluster (DAC)
 
-Warning. This optional task will start a GPU for minimum 1 hour. So, the cost will be some euros by hour. If you follow this procedure, be sure to agree with your OCI Cloud Administrator first. And if for a test, please, stop the DAC after using it.
+⚠️ This optional task starts a GPU for at least one hour, so it may cost several euros per hour. Confirm with your OCI Cloud Administrator first, and stop the DAC after testing.
 
 We will follow this process: https://docs.oracle.com/en-us/iaas/Content/generative-ai/imported-models.htm
 
-Using a DAC has a lot of advantages.
-- You choose the model you want to run. It runs for you on your GPU. 
-- You pay per hour. When stopped, the cost stops.
-- There is no maximum number tokens per minute. 
-- There is no cost per token. For high token works, that need to run during a limited period, it is an interesting solution.
-- No share of the GPUs with other users.
-- ...
+DAC-hosted models run on dedicated infrastructure in your tenancy. Use a DAC-hosted model when you need production-grade control over model hosting and inference. DACs provide several advantages:
 
-Let's install Qwen or Nemotron (tested Nemotron - OK).
+- **Flexibility:** Import supported Hugging Face-format models from Hugging Face or Object Storage, test imported models with shorter commitments, choose fine-tuned or quantized versions, and right-size based on visible hardware specifications.
+- **Isolation:** Run workloads on dedicated GPU resources inside your tenancy, which helps protect sensitive data, avoids shared-resource contention, and supports regulated workloads.
+- **Predictable latency:** Dedicated infrastructure can provide more stable time-to-first-token and inference response times than shared model endpoints, especially for scaling production applications.
+- **Fine-tuning support:** Host fine-tuned models alongside base models, run multiple fine-tuned models on a single cluster, and control model lifecycle and upgrade cadence.
+- **Cost efficiency at scale:** For inference-heavy workloads, DACs can reduce effective price per token by keeping dedicated resources highly utilized and hosting multiple models on one cluster.
+- **Deployment near data:** Deploy in supported OCI regions, including regulated regions where available, to support data residency, lower latency, and simpler security reviews.
+- **Simplified management:** OCI manages the infrastructure while you manage model deployment, scaling, fine-tuning, and application integration.
 
 Documentation: https://docs.oracle.com/en-us/iaas/Content/generative-ai/import-model-from-hugging-face.htm#top
 
-XXXXX
+1. Create a Hugging Face token.
+    - Hugging Face -> Settings -> Access Tokens -> New token
+    - Use either a read token or, preferably for production, a fine-grained token scoped to the model repository.
+    - Copy the token.
+2. In OCI Console, go to Generative AI -> Imported models.
+3. Click **Import model**.
+4. Enter model metadata:
+    - Name: **gemma-3-4b-it**
+    - Description (optional): **Imported directly from Hugging Face**
+    - Vendor (optional): **Google**
+    - Version (optional): **1.0**
+5. In Import configuration:
+    - Data source type: **HuggingFace**
+    - Model ID: **google/gemma-3-4b-it**
+    - HuggingFace Token: paste the copied token
+6. Submit and wait until Imported Model is Active.
+7. Go to Dedicated AI clusters.
+8. Create a Hosting DAC:
+    - Name: **dac-gemma-3-4b-it**
+    - Base model: **gemma-3-4b-it**
+    - Unit shape: **A100_80G_X1** for **google/gemma-3-4b-it**
+    - Model replica: **1**
+9. Wait until DAC is Active.
+10. Go to Endpoints.
+11. Create endpoint:
+    - Model: **gemma-3-4b-it**
+    - DAC: **dac-gemma-3-4b-it**
+12. Wait until Endpoint is Active.
 
-## Models
+## Task 9: (Optional) Configure Cline for a DAC-hosted model
 
-1. Models that works fine:
-    - xai.grok-4-1-fast-non-reasoning
-    - xai.grok-code-fast-1
-    - xai.grok-4.20-0309-non-reasoning
-    - xai.grok-4.20-0309-reasoning
+Use the active DAC endpoint you created in Task 8. Keep note of these values:
+
+- Region
+- DAC endpoint OCID
+- Compartment
+
+For DAC-hosted models, the Cline Model ID is the DAC endpoint OCID:
+
+```
+ocid1.generativeaiendpoint.<region>..<unique_id>
+```
+
+For DAC-hosted models, configure the full Chat Completions URL with **/chat/completions**:
+
+```
+https://inference.generativeai.<region>.oci.oraclecloud.com/openai/v1/chat/completions
+```
+
+Example for UK South London:
+
+```
+https://inference.generativeai.uk-london-1.oci.oraclecloud.com/openai/v1/chat/completions
+```
+
+Use the OCI Generative AI API key you created earlier in this lab.
+
+⚠️ Store the key securely. Do not commit it to GitHub or place it in source code.
+
+Configure Cline:
+
+1. Open VS Code or PyCharm.
+2. Open the Cline panel.
+3. Click the Settings icon.
+4. Under API Provider, select **OpenAI Compatible**.
+5. Set Base URL to the full Chat Completions URL.
+6. Paste your OCI Generative AI API key into the API Key field.
+7. Set Model ID to your DAC endpoint OCID.
+8. Save the configuration.
+
 
 ## Acknowledgements
 
 - **Author**
-    - Marc Gueury, Generative AI Specialist
-    - Ilayda Temir, Generative AI Specialist
-
+    - Marc Gueury, AI Agents Black Belt
+    - Ilayda Temir, Generative AI Black Belt

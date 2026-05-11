@@ -7,27 +7,27 @@ Estimated time: 10 min
 
 ### Objectives
 
-In this lab, we will use one trigger of Git to automate AI task when pushing new change to the git repository on the server.
+Use a Git trigger to automate AI tasks when new changes are pushed to the server repository.
 
 ### Prerequisites
-- The lab 1 to 3 must have been completed.
+- Labs 1 through 3 are complete.
 
 ### Git Hooks
 
-This lab is based on Git Hooks: 
+This lab is based on Git hooks: 
 - https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks
 
 When some actions are done with the Git server, **Hooks** can start commands.
 
-In this lab, we show will 3 Git Hooks:
+In this lab, we will show three Git hooks:
 - Rebuild
 - Documentation using AI for each commit
-- Security to check the security best practice  of the commit from an AI point of view. 
+- Security checks for each commit using AI. 
 
 ## Task 1: Documentation and Security
 
-In fact, you did it by every git push request to the GIT server.
-At the end of the each git push request, there is this:
+You already triggered this workflow with each git push request to the Git server.
+At the end of each git push, you see output like this:
 
     ```
     ...
@@ -39,9 +39,9 @@ At the end of the each git push request, there is this:
     bb1ea83..46a7469  master -> master
     ```
 
-The name are in the form of **doc."date"\_"git commit id".log**
+The log names use the format **doc.<date>\_<git commit id>.log**.
 
-1. Login to the server. 
+1. Log in to the server.
 
     ```
     ssh opc@123.123.123.123
@@ -51,7 +51,7 @@ The name are in the form of **doc."date"\_"git commit id".log**
     cat security.20260505-150604_46a7469.log
     ```
 
-2. In rebuild log, you will see the log of the redeployment (and rebuild).
+2. In the rebuild log, you will see the log of the redeployment (and rebuild).
         ![Rebuild](images/devops_rebuild.png)  
  
     The security.log looks like this:
@@ -109,7 +109,7 @@ The name are in the form of **doc."date"\_"git commit id".log**
     - [ ] Run full Bastion build/test suite.
     ```
 
-## Task 2: Check how it works.
+## Task 2: Check how it works
 
 If you look in $HOME/compute/git/post\_receive\_doc.sh, you will see this:
 
@@ -191,20 +191,20 @@ EOF
 
 1. Too many consecutive mistakes (3). The model may not be capable enough for this task. Consider using a more capable model.
     - Cause:
-        You get this error, this is very probably due to maximum number of token reached. 
+        You get this error, this is very probably due to the maximum number of tokens reached. 
 
         ```
         Error: [YOLO MODE] Task failed: Too many consecutive mistakes (3). The model may not be capable enough for this task. Consider using a more capable model.
         ```
     - Solution:
-        1. Wait 1 or 2 mins. If the number of token sent to the model decrease, it will work again.
+        1. Wait one or two minutes. If the number of tokens sent to the model decreases, it will work again.
         2. Ask to your OCI Admin to increase the maximum number of tokens for the model that you are using in Governance / Limits / Generative AI.
         3. Use a Dedicated AI Cluster that has no limit of tokens.
 
 ## Acknowledgements
 
 - **Author**
-    - Marc Gueury, Generative AI Specialist
-    - Maurits Dijkens, Generative AI Specialist
+    - Marc Gueury, AI Agents Black Belt
+    - Maurits Dijkens, AI Agents Black Belt
 
 
