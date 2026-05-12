@@ -64,15 +64,32 @@ Estimated time: 15 min
 
     ```
     <copy>    
-    -----------------------------------------------------------------------
+ -----------------------------------------------------------------------
     Build done
     URLs
     - User Interface: http://123.123.123.123/
     - REST: http://123.123.123.123/app/threads
+
+    -----------------------------------------------------------------------
+    DB connection:
+
+    DB_USER=admin
+    DB_PASSWORD=xxxxxxx
+    DB_URL=(description=(retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=xxxxxxxx.adb.us-chicago-1.oraclecloud.com))(connect_data=(service_name=yyyyyyyyyy_medium.adb.oraclecloud.com))(security=(ssl_server_dn_match=no)))
+
+    In terminal 1, open the ssh tunnel
+      ssh -L1521:xxxxxxx.adb.us-chicago-1.oraclecloud.com:1521 opc@123.123.123.123
+    In terminal 2, save the connection to the database.
+      $HOME/oracle/sqlcl/bin/sql /nolog
+      conn -savepwd -save adb admin@(description=(retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=localhost))(connect_dat. a=(service_name=yyyyyyyyyy_medium.adb.oraclecloud.com))(security=(ssl_server_dn_match=no)))
+      xxxxxxx
+      select * from dept;
+      exit    
+
     -----------------------------------------------------------------------
     Vibe Coding (Build done in Bastion):
 
-    1. Check that you can login from your laptop to the bastion using the private key associated with your\_public\_ssh\_key in terraform.tfvars
+    1. Check that you can login from your laptop to the bastion using the private key associated with your_public_ssh_key in terraform.tfvars
     > ssh opc@123.123.123.123
     2. Clone the git repo of the starter app in your laptop
     > git clone opc@123.123.123.123:~/app.git app
@@ -94,7 +111,7 @@ Estimated time: 15 min
 ## Task 2: Set up an SSH connection 
 
 You need to set up an SSH connection to the created VM. There are several ways to do this.
-The goal is that this command works from your laptop (with the IP from the output above):
+The goal is that this command works from your laptop. Replace with the right IP given by terraform.
 ```
 <copy>    
 ssh opc@123.123.123.123

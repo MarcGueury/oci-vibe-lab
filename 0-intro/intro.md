@@ -14,6 +14,8 @@ Rather than focusing purely on theory, these labs are hands-on and iterative. Yo
 
 Each lab builds on the previous one, guiding you from initial setup to production-level practices including database integration, orchestration, migration strategies, and operational monitoring.
 
+Estimated Workshop Time: 120 minutes
+
 ### What You Will Learn
 
 In these labs, you will learn how to:
@@ -22,19 +24,18 @@ In these labs, you will learn how to:
 - Deploy and extend AI orchestration frameworks using LangGraph and MCP  
 - Automate documentation and code generation  
 - Discover tables and generate SQL, PL/SQL with databases  
+- DevOps: Documentation, Security, Monitoring
 - Design migration strategies between projects  
-
-## Labs Structure
 
 ### Lab 1: Vibe Coding Fundamentals
 
-You will start by setting up your development environment. This includes configuring API keys, installing and integrating Cline with Visual Studio Code, and generating your first “Hello World” application. You will also explore setting up a DAC (Dedicated AI Cluster) using Imported Models such as Qwen.
+You will start by setting up your development environment. This includes configuring API keys, installing and integrating Cline with Visual Studio Code, and generating your first “Hello World” application. You will also explore setting up a DAC (Dedicated AI Cluster) using Imported Models such as Nemotron or Qwen.
 
 ![Hello World](images/lab-hello-world.png)
 
-### Lab 2: Installation of a server
+### Lab 2: Installation
 
-You will then install a Virtual Machine where we will run and develop an application using LangGraph, MCP and a database.
+You will then install a Virtual Machine that contains a program using LangGraph + MCP and a database. We will use them in the rest of the lab.
 
 ![Install](images/lab-install.png)
 
@@ -46,11 +47,11 @@ You will generate documentation of the program above for technical and end-user.
 
 This lab focuses on connecting with databases. You will configure SQLcl with MCP, establish secure connections, and use AI to automatically generate database documentation as well as SQL and PL/SQL statements.
 
+![Install](images/lab-database.png)
+
 ### Lab 5: DevOps and production monitoring
 
-We will introduce operational best practices using DevOps and AI. By adding GIT hooks, including documentation hooks, security and redeployment at the time of "git push".
-
-XXXX You will analyze production logs, store and categorize errors using a vector store, generate log-based tickets, and reuse automated comparison workflows to continuously improve and adapt your systems.
+We will introduce operational best practices using DevOps and AI. By adding GIT hooks, including documentation hooks, security and redeployment at the time of "git push". We will also monitor logs using AI.
 
 ![Install](images/lab-devops.png)
 

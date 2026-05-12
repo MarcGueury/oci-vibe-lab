@@ -83,15 +83,15 @@ Let's ask Cline to add code for a table using Python.
     ![Documentation](images/emp2.png)  
 
 
-## Task 4: XXX - Other test
+## Task 4: Other test
 
-You could try other things like:
+You could try other things like.
 
 1. Go to Cline.
 2. In the prompt, type:
     ```
     <copy>
-    Modify mcp_server.py to add tools to create bookings in a restaurant. 
+    Modify mcp_server.py to add tools to create bookings in a restaurant (VibeCook)
     - The user will be logged by default. He will be named "Joe Doe". 
     - The program knows the user's allergies. 
     - When booking, propose available times when tables are free. 
@@ -99,11 +99,15 @@ You could try other things like:
     - There are 30 places in the restaurant. There are 2 services at 18:00 and 19:30. 
     - You can book only today and tomorrow.
     - If the restaurant is full, propose calling later.
-    - Add a tool with a menu. When showing the menu, take care of the allergies.
+    - Add a tool with a menu. When showing the menu, take care of the allergies
+    - In MCP tools comments, please insist on the date and time format: YYYY-DD-MM and HH24:MI
     </copy>
     ```
 ...
-3. Same than above. Git push and check the result.
+3. Same than above. Git push and check the result. 
+4. Try: "book a restaurant tonight at 6PM for 4 people"
+
+Based on the model chosen, the result will be different.  
 
 ## Acknowledgements
 

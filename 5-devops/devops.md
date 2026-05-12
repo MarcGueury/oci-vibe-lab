@@ -3,6 +3,8 @@
 ## Introduction
 In this lab, we will run tools that will trigger when the code is pushed to the Git server.
 
+![Architecture](../0-intro/images/lab-devops.png)
+
 Estimated time: 10 min
 
 ### Objectives
@@ -19,10 +21,12 @@ This lab is based on Git hooks:
 
 When some actions are done with the Git server, **Hooks** can start commands.
 
-In this lab, we will show three Git hooks:
-- Rebuild
-- Documentation using AI for each commit
-- Security checks for each commit using AI. 
+In this lab, 
+1. We will show three Git hooks:
+    - Rebuild
+    - Documentation using AI for each commit
+    - Security checks for each commit using AI. 
+2. Then we do monitoring via Cline on the VM directly.
 
 ## Task 1: Documentation and Security
 
@@ -32,9 +36,9 @@ At the end of each git push, you see output like this:
     ```
     ...
     remote: Already up to date.
-    remote: Rebuild: See /home/opc/devops/rebuild.20260505-150604_46a7469.log
-    remote: Documentation: See /home/opc/devops/doc.20260505-150604_46a7469.log
-    remote: Security: See /home/opc/devops/security.20260505-150604_46a7469.log
+    remote: rebuild: See /home/opc/devops/rebuild.20260505-150604_46a7469.log
+    remote: doc: See /home/opc/devops/doc.20260505-150604_46a7469.log
+    remote: security: See /home/opc/devops/security.20260505-150604_46a7469.log
     To 163.192.209.165:~/app.git
     bb1ea83..46a7469  master -> master
     ```
@@ -187,6 +191,122 @@ Output format:
 - Follow-up checklist
 EOF
 ````
+
+## Task 3: (Optional) Monitoring
+
+The demo contains also a sample that monitors the logs via a LLM and learn with the time the log line that are normal or that contains an error.
+To run the demo
+- log on the VM
+  ```
+  ssh opc@123.123.123.123
+  ```
+- start the monitoring
+  ```
+  cd monitoring/bin
+  ./install.sh
+  ```
+- Check the monitoring.log
+
+  ```
+  tail -f monitoring.log
+  ```
+  You will see that after some time, the system will create regular expression to distinguish between error and normal lines.
+
+  ```
+    Log lines:
+    LINE 1:  with transport 'http' on 
+    ---
+    LINE 2:  http://0.0.0.0:2025/mcp 
+    ---
+    LINE 3: INFO: Started server process [177376] 
+    ---
+    LINE 4: INFO: Waiting for application startup. 
+    ---
+    LINE 5: INFO: Application startup complete. 
+    ---
+    LINE 6: INFO: Uvicorn running on http://0.0.0.0:2025 (Press CTRL+C to quit) 
+    ---
+    LINE 7: INFO: 127.0.0.1:38536 - "POST /mcp HTTP/1.1" 200 OK 
+    ---
+    LINE 8: INFO: 127.0.0.1:38550 - "POST /mcp HTTP/1.1" 202 Accepted 
+    ---
+    LINE 9: INFO: 127.0.0.1:38566 - "GET /mcp HTTP/1.1" 200 OK 
+    ---
+    LINE 10: INFO: 127.0.0.1:38574 - "POST /mcp HTTP/1.1" 200 OK 
+
+    Output: (Only a JSON output with the format above!!)
+    2026-05-11 21:02:09,399 INFO monitoring <call_cline> out=[
+    {
+        "severity": "normal",
+        "reason": "transport information",
+        "suggested_regex": null,
+        "confidence": 1.0
+    },
+    {
+        "severity": "normal",
+        "reason": "server URL",
+        "suggested_regex": null,
+        "confidence": 1.0
+    },
+    {
+        "severity": "normal",
+        "reason": "server process started",
+        "suggested_regex": null,
+        "confidence": 1.0
+    },
+    {
+        "severity": "normal",
+        "reason": "waiting for application startup",
+        "suggested_regex": null,
+        "confidence": 1.0
+    },
+    {
+        "severity": "normal",
+        "reason": "application startup complete",
+        "suggested_regex": null,
+        "confidence": 1.0
+    },
+    {
+        "severity": "normal",
+        "reason": "Uvicorn running message",
+        "suggested_regex": null,
+        "confidence": 1.0
+    },
+    {
+        "severity": "normal",
+        "reason": "HTTP request log (200 OK)",
+        "suggested_regex": "^INFO: \\d+\\.\\d+\\.\\d+\\.\\d+:\\d+ - \".*\" 200 OK$",
+        "confidence": 0.9
+    },
+    {
+        "severity": "normal",
+        "reason": "HTTP request log (202 Accepted)",
+        "suggested_regex": "^INFO: \\d+\\.\\d+\\.\\d+\\.\\d+:\\d+ - \".*\" 202 Accepted$",
+        "confidence": 0.9
+    },
+    {
+        "severity": "normal",
+        "reason": "HTTP GET request log (200 OK)",
+        "suggested_regex": "^INFO: \\d+\\.\\d+\\.\\d+\\.\\d+:\\d+ - \".*\" 200 OK$",
+        "confidence": 0.9
+    },
+    {
+        "severity": "normal",
+        "reason": "HTTP POST request log (200 OK)",
+        "suggested_regex": "^INFO: \\d+\\.\\d+\\.\\d+\\.\\d+:\\d+ - \".*\" 200 OK$",
+        "confidence": 0.9
+    }
+    ]
+  ```
+
+In this example, with the time, the LLM is less and less called. And normal message or error are detected more and more via regular expression.
+This is just an example of using a LLM for monitoring. For production case, consider tool like OCI Log Analytics: https://www.oracle.com/manageability/log-analytics/
+
+- Stop the monitoring. Else the LLM will continue to be called each 1 mins, for new type of lines.
+  ```
+  ./stop.sh
+  ```
+
 ## Known Issues
 
 1. Too many consecutive mistakes (3). The model may not be capable enough for this task. Consider using a more capable model.

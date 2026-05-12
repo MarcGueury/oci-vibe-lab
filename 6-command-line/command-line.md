@@ -30,7 +30,7 @@ Log in to the compute created in Lab 2.
 
     ```
     <copy>
-    ssh opc@YOUR_COMPUTE_IP
+    ssh opc@123.123.123.123
     </copy>
     ```
 
@@ -89,11 +89,18 @@ Back in the terminal.
     </copy>
     ```
     ![Migration](images/cline-cli1.png)  
-
-2. If you copy the generated Markdown in your favorite Markdown viewer, the result will look like this:
-
+2. It will take time ( 10 - 15 mins ). The LLM will 
+    - Check all files of both programs 
+    - Build a summary for both programs 
+    - Before to compare them
+    - When done, please check the output
+    ```
+    <copy>
+    cat gap_analysis.md
+    </copy>
+    ```
+3. If you copy the generated Markdown in your favorite Markdown viewer, the result will look like this:
     ![Migration](images/cline-cli2.png)  
-
 
 Congratulations on finishing all the labs. We hope you learned something useful!
 

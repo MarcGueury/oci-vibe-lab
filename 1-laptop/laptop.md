@@ -52,10 +52,16 @@ Estimated time: 45 min
     <copy>
     List of ##VARIABLES##
     =====================
+    YOUR_IP_FILTER=(SAMPLE) xx.xx.xx.xx/32
     REGION=(SAMPLE) eu-frankfurt-1
     COMPARTMENT_OCID=(SAMPLE) ocid1.compartment.oc1.xxxxxxx
     api-key1=(SAMPLE) sk-xxxxxxxxxxxxxx
     api-key2=(SAMPLE) sk-xxxxxxxxxxxxxx
+    Optional
+    ========
+    hugging-face-token=(SAMPLE) hf_xxxxxxxxxxxxxxxxxxxx
+    DAC endpoint OCID=(SAMPLE) ocid1.generativeaiendpoint.oc1.xxxxxxxxxx
+    BASE_URL=(sample) https://inference.generativeai.eu-frankfurt-1.oci.oraclecloud.com/openai/v1/chat/completions
 
     Terraform Output
     ================
@@ -65,6 +71,7 @@ Estimated time: 45 min
     URLs
     - User Interface: http://123.123.123.123/
     - REST: http://123.123.123.123/app/threads
+
     -----------------------------------------------------------------------
     DB connection:
 
@@ -73,12 +80,14 @@ Estimated time: 45 min
     DB_URL=(description=(retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=xxxxxxxx.adb.us-chicago-1.oraclecloud.com))(connect_data=(service_name=yyyyyyyyyy_medium.adb.oraclecloud.com))(security=(ssl_server_dn_match=no)))
 
     In terminal 1, open the ssh tunnel
-    ssh -L1521:xxxxxxx.adb.us-chicago-1.oraclecloud.com:1521 opc@123.123.123.123
-    In terminal 2, connect to the database 
-      /home/opc/oracle/sqlcl/bin/sql /nolog
+      ssh -L1521:xxxxxxx.adb.us-chicago-1.oraclecloud.com:1521 opc@123.123.123.123
+    In terminal 2, save the connection to the database.
+      $HOME/oracle/sqlcl/bin/sql /nolog
       conn -savepwd -save adb admin@(description=(retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1521)(host=localhost))(connect_dat. a=(service_name=yyyyyyyyyy_medium.adb.oraclecloud.com))(security=(ssl_server_dn_match=no)))
       xxxxxxx
-    exit    
+      select * from dept;
+      exit    
+
     -----------------------------------------------------------------------
     Vibe Coding (Build done in Bastion):
 
@@ -142,8 +151,8 @@ First, create an OpenAI-compatible API key.
     ![API_KEY](images/api_key3.png)
 
 6. Copy the values of the two keys in your notes (##api-key1##, ##api-key2##).
-    - api-key1: sk-xxxxxxxxx
-    - api-key2: sk-xxxxxxxxx
+    - api-key1=sk-xxxxxxxxx
+    - api-key2=sk-xxxxxxxxx
     - Click **Close**.
 While you can choose any model of any provider to continue this lab, we will go through several model choice available in OCI.
 
@@ -170,9 +179,7 @@ While you can choose any model of any provider to continue this lab, we will go 
     - Enter *cline* in the search field. When it appears, click *Install*, then click *Trust Publisher and Install* to proceed.
     - The extension is installed and appears on the sidebar.
 
-    ![Cline](images/cline1.png)
-
-While you can choose any model of any provider to continue this lab, we will go through several model choices available in OCI.
+While you can choose any model of any provider to continue this lab, we will go through several models available in OCI.
 
 ## Task 6: Configure your AI Model
 
@@ -180,6 +187,8 @@ While you can choose any model of any provider to continue this lab, we will go 
 2. Go to the Cline model configuration
     - Click on Cline (on the sidebar)
     - Click on the settings icon
+
+    ![Cline](images/cline1.png)
 
 3. Go to the Cline model configuration
     - API Provider: **OpenAI Compatible**
@@ -206,7 +215,7 @@ Back in Cline. Try the simple example possible.
 
 1. In your operating system, create a directory **vibe**
 2. In that vibe directory, create a directory **hello_world**
-3. In Visual Studio, open the **hello_world** directory. It is empty.
+3. In Visual Studio, open menu *File / Open Folder...*. Choose the **hello_world** directory. It is empty.
 4. Start Cline. In the Cline prompt, type: **Write hello world in python**
 
     ![API_KEY](images/cline4.png)
@@ -238,75 +247,82 @@ DAC-hosted models run on dedicated infrastructure in your tenancy. Use a DAC-hos
 Documentation: https://docs.oracle.com/en-us/iaas/Content/generative-ai/import-model-from-hugging-face.htm#top
 
 1. Create a Hugging Face token.
-    - Hugging Face -> Settings -> Access Tokens -> New token
-    - Use either a read token or, preferably for production, a fine-grained token scoped to the model repository.
-    - Copy the token.
-2. In OCI Console, go to Generative AI -> Imported models.
-3. Click **Import model**.
+    - Open https://huggingface.co/ in your browser
+    - Login or Sign Up.
+    - Go to Hugging Face / Settings / Access Tokens
+    - Click  **Create new token**
+        ![Hugging face](images/hugging-face1.png)    
+    - Use either a read token (easier) or, preferably for production, a fine-grained token scoped to the model repository.
+    - Copy the token in your notes ##hugging-face-token##
+        ![Hugging face](images/hugging-face2.png)    
+2. In OCI Console, go to Analytics & AI / Generative AI / Imported models.
+3. Click **Create Imported model**.
+    ![imported model](images/imported-model1.png) 
 4. Enter model metadata:
-    - Name: **gemma-3-4b-it**
+    - When you read this lab, the new model are added so fast that the list will be different.  Choose the best for you. Here, we use this model from NVIDIA. https://docs.oracle.com/en-us/iaas/Content/generative-ai/imported-nvidia-models.htm
+    - Name: **NVIDIA-Nemotron-3-Nano-30B-A3B-FP8**
     - Description (optional): **Imported directly from Hugging Face**
-    - Vendor (optional): **Google**
+    - Vendor (optional): **NVIDIA**
     - Version (optional): **1.0**
 5. In Import configuration:
     - Data source type: **HuggingFace**
-    - Model ID: **google/gemma-3-4b-it**
-    - HuggingFace Token: paste the copied token
-6. Submit and wait until Imported Model is Active.
-7. Go to Dedicated AI clusters.
-8. Create a Hosting DAC:
-    - Name: **dac-gemma-3-4b-it**
-    - Base model: **gemma-3-4b-it**
-    - Unit shape: **A100_80G_X1** for **google/gemma-3-4b-it**
+    - Model ID: **nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8**
+    - HuggingFace Token: paste the copied token ##hugging-face-token##
+        ![dac](images/dac0.png)  
+6. Click **Next**. Then **Save** and wait until Imported Model is Active. It takes for this model about 3 mins.
+7. On the menu on the left, go to Dedicated AI clusters.
+8. Click **Create dedicated AI cluster**
+    - Name: **dac-vibe***
+    - Base model: **nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8**
+    - Unit shape: **H100_X4** (or **H100_X2** if you accept that it will be slower)
     - Model replica: **1**
-9. Wait until DAC is Active.
+    ![dac](images/dac1.png)     
+9. Wait until DAC is Active. 
 10. Go to Endpoints.
-11. Create endpoint:
-    - Model: **gemma-3-4b-it**
-    - DAC: **dac-gemma-3-4b-it**
-12. Wait until Endpoint is Active.
+    ![dac](images/dac2.png) 
+11. Click **Create endpoint**
+    - Name: **dac-endpoint***
+    - Model: **NVIDIA-Nemotron-3-Nano-30B-A3B-FP8**
+    - Click **Create**
+    ![dac](images/dac3.png)     
+12. When the Endpoint is Active (it can take 15 mins or more depending of model size). Try it in the **View in Playground** on the top left. Try "tell me a joke" or "who are you" ?
+    ![dac](images/dac4.png)     
 
 ## Task 9: (Optional) Configure Cline for a DAC-hosted model
 
 Use the active DAC endpoint you created in Task 8. Keep note of these values:
+1. Take notes of these values
+    - DAC endpoint OCID ##DAC endpoint OCID##.
 
-- Region
-- DAC endpoint OCID
-- Compartment
+        In the Dedicate AI Cluster, go to the General tab and copy the DAC Endpoint OCID:
+        ```
+        ocid1.generativeaiendpoint.<region>..<unique_id>
+        ```
+    - Base URL 
+        It looks like this:
+        ```
+        https://inference.generativeai.<region>.oci.oraclecloud.com/openai/v1/chat/completions
+        ```
 
-For DAC-hosted models, the Cline Model ID is the DAC endpoint OCID:
+        Example, replace by your regions prefix, for UK South London (uk-london-1):
 
-```
-ocid1.generativeaiendpoint.<region>..<unique_id>
-```
-
-For DAC-hosted models, configure the full Chat Completions URL with **/chat/completions**:
-
-```
-https://inference.generativeai.<region>.oci.oraclecloud.com/openai/v1/chat/completions
-```
-
-Example for UK South London:
-
-```
-https://inference.generativeai.uk-london-1.oci.oraclecloud.com/openai/v1/chat/completions
-```
-
-Use the OCI Generative AI API key you created earlier in this lab.
-
-⚠️ Store the key securely. Do not commit it to GitHub or place it in source code.
-
-Configure Cline:
-
-1. Open VS Code or PyCharm.
-2. Open the Cline panel.
-3. Click the Settings icon.
-4. Under API Provider, select **OpenAI Compatible**.
-5. Set Base URL to the full Chat Completions URL.
-6. Paste your OCI Generative AI API key into the API Key field.
-7. Set Model ID to your DAC endpoint OCID.
-8. Save the configuration.
-
+        ```
+        https://inference.generativeai.uk-london-1.oci.oraclecloud.com/openai/v1/chat/completions
+        ```
+    - We will use OCI Generative AI API key you created earlier in this lab.
+2. Configure Cline:
+    - Open Visual Studio Code
+    - Open the Cline panel
+    - Click the Settings icon
+    - Under API Provider, select **OpenAI Compatible**
+    - Set Base URL to the full Chat Completions URL
+    - Paste your OCI Generative AI API key into the API Key field
+    - Set Model ID to your DAC endpoint OCID
+    - Click **Done**
+        ![dac](images/cline-dac.png)  
+    - Back in Cline  Retry the 2 samples above 
+        - who are you ? 
+        - create a hello world in python 
 
 ## Acknowledgements
 
