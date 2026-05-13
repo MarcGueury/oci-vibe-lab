@@ -42,22 +42,21 @@ Estimated time: 15 min
 
     If not, you can also comment this line. Terraform will create an SSH key (in target/ssh\_key\_starter) that you will later configure on your laptop. 
 
-8. Run each of the two commands below in the Terminal, one at a time. This will run Terraform to create the rest of the components.
+8. Run each of the two commands below in the Terminal. This will run Terraform to create the rest of the components.
     ```
     <copy>
     cd oci-vibe/starter/
-    </copy>
-    ```
-   
-    ````
-    <copy>
     ./starter.sh build
     </copy>
     ````
 
-    Answer the questions about authorization token and compartment OCID.
-
-    In case of errors, check **Known Issues** below
+    Answer the questions about 
+    - Prefix (ex: vibe)
+    - Compartment OCID (See your notes)
+    - Public IP Filter. The setup will have an Internet gateway with port 80/443 open to the internet. What is the IP Range of the machine who can access these ports:
+        1. All the machines on the internet -> 0.0.0.0/0
+        2. Just my laptop (recommended)
+        3. Other (your own IP range)
 
 9. **Please proceed to the [next lab](#next) while Terraform is running.** 
 10. When Terraform finishes, you will see settings that you need in the next lab. Save these to your text file. It will look something like:
