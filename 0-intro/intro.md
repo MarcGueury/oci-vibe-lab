@@ -29,7 +29,7 @@ In these labs, you will learn how to:
 
 ### Lab 1: Vibe Coding Fundamentals
 
-You will start by setting up your development environment. This includes configuring API keys, installing and integrating Cline with Visual Studio Code, and generating your first “Hello World” application. You will also explore setting up a DAC (Dedicated AI Cluster) using Imported Models such as Nemotron or Qwen.
+You will start by setting up your development environment. This includes configuring API keys, installing and integrating Cline with Visual Studio Code, and generating your first “Hello World” application. You will also explore setting up a DAC (Dedicated AI Cluster) using Imported Models such as Nemotron, Qwen, Gemma, ...
 
 ![Hello World](images/lab-hello-world.png)
 

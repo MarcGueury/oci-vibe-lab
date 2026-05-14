@@ -154,7 +154,7 @@ First, create an OpenAI-compatible API key.
     - api-key1=sk-xxxxxxxxx
     - api-key2=sk-xxxxxxxxx
     - Click **Close**.
-While you can choose any model of any provider to continue this lab, we will go through several model choice available in OCI.
+While you can choose any model of any provider to continue this lab, we will go through several models available in OCI.
 
 ## Task 4: Create a Policy
 
@@ -197,7 +197,7 @@ While you can choose any model of any provider to continue this lab, we will go 
         - Ex: https://inference.generativeai.us-chicago-1.oci.oraclecloud.com/20231130/actions/v1
     - OpenAI Compatible API Key
         - Choose a model: https://docs.oracle.com/en-us/iaas/Content/generative-ai/model-endpoint-regions.htm#top
-        - Ex: *xai.grok-4.20-0309-non-reasoning*
+        - Ex: *xai.grok-4.3*
     - Click **Done**
 
     ![API_KEY](images/cline2.png)
@@ -274,7 +274,7 @@ Documentation: https://docs.oracle.com/en-us/iaas/Content/generative-ai/import-m
 8. Click **Create dedicated AI cluster**
     - Name: **dac-vibe***
     - Base model: **nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8**
-    - Unit shape: **H100_X4** (or **H100_X2** if you accept that it will be slower)
+    - Unit shape: **H100 X4** (or **H100 X2** if you accept that it will be slower)
     - Model replica: **1**
     ![dac](images/dac1.png)     
 9. Wait until DAC is Active. 
