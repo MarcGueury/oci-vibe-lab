@@ -324,6 +324,41 @@ Use the active DAC endpoint you created in Task 8. Keep note of these values:
         - who are you ? 
         - create a hello world in python 
 
+## Known Issue
+
+1. Error when running cline in command line:
+
+    Error when running cline in cli mode.
+    ````
+    ... session.hook requires a valid hook event payload
+    ````
+
+    Solution:
+    - check the /home/opc/.cline/data/settings/providers.json 
+    - it should look like this:
+        ```
+        {
+            "version": 1,
+            "lastUsedProvider": "openai-compatible",
+            "providers": {
+                "openai-compatible": {
+                "settings": {
+                    "provider": "openai-compatible",
+                    "apiKey": "sk-xxxxxxxxxxxxxxxxxxxxxx",
+                    "model": "openai.gpt-oss-120b",
+                    "baseUrl": "https://inference.generativeai.us-chicago-1.oci.oraclecloud.com",
+                    "reasoning": {
+                    "enabled": false
+                    }
+                },
+                "updatedAt": "2026-05-15T08:31:37.766Z",
+                "tokenSource": "manual"
+                }
+            }
+        }
+        ```
+    - See https://github.com/cline/cline/issues/10750
+
 ## Acknowledgements
 
 - **Author**

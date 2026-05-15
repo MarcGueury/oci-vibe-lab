@@ -20,7 +20,7 @@ Estimated time: 10 min
 ## Task 1: Install SQLcl on your laptop
 
 Install SQLcl on lyour laptop. Follow the doc here. 
-https://docs.oracle.com/en/database/oracle/apex/24.2/aeadm/downloading-and-installing-sqlcl.html
+https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/
 
 We will assume later that you installed it in $HOME/oracle/sqlcl
 
@@ -67,7 +67,7 @@ We will assume later that you installed it in $HOME/oracle/sqlcl
 7. You’ll now see the SQLcl MCP Server and its tools listed on the MCP Servers page.
     Click Done on the MCP Servers page.
 8. If necessary, restart VS Code for changes to take effect.
-9. Try to see if you can connect to the database
+9. Try to see if you can connect to the database. Go to Cline and ask:
    ```
    connect to database adb
    ```
@@ -83,13 +83,20 @@ We will assume later that you installed it in $HOME/oracle/sqlcl
 
 ## Task 4: Generating SQL and PL/SQL code 
 
-1. In cline, type:
+1. In Cline, type:
     ```
-    From table in sh.md, generate a sql query to show the sales. Do not use IDs.
+    From the tables in sh.md, generate a sql query to show the sales. Do not use IDs. Save it in sales_query.sql.
     ```
     ![Sales report](images/sales_report.png) 
 
-2. In cline, type:
+    Then ask Cline to test it. 
+    ```
+    Test it.
+    ```
+
+    It will use the run-sqlcl tool of the MCP Server.
+
+2. In Cline, type:
     ```
     From the tables in sh.md, generate a PLSQL procedure in a file sales_per_product.sql that
     - accepts a year and country
