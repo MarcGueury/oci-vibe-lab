@@ -18,14 +18,16 @@ Estimated Workshop Time: 120 minutes
 
 ### What You Will Learn
 
-In these labs, you will learn how to:
+In these labs, you will get an introduction how to:
 - Set up and configure Vibe Coding environment on your laptop  
 - Generate and execute code using natural language prompts  
 - Deploy and extend AI orchestration frameworks using LangGraph and MCP  
-- Automate documentation and code generation  
+- Automate documentation and security check  
 - Discover tables and generate SQL, PL/SQL with databases  
 - DevOps: Documentation, Security, Monitoring
 - Design migration strategies between projects  
+
+![Overview](images/lab-devops-overview.png)
 
 ### Lab 1: Vibe Coding Fundamentals
 

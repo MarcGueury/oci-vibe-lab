@@ -101,6 +101,7 @@ You could try other things like.
     - If the restaurant is full, propose calling later.
     - Add a tool with a menu. When showing the menu, take care of the allergies
     - In MCP tools comments, please insist on the date and time format: YYYY-DD-MM and HH24:MI
+    - In MCP tools, be resilient to mistake of LLMs. Accept that all parameters are sent with None. None is the default value. If a parameter is missing and return a clean error to the LLM asking him about the mandatory parameters.
     </copy>
     ```
 ...
